@@ -1,0 +1,19 @@
+# Directories
+/.idea/
+/.vscode/
+/coverage/
+/build/
+.pnp/
+node_modules/
+
+# Files
+/TODO
+.DS_Store
+.pnp.js
+
+# Patterns
+.*.sw[op]
+.env.*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
