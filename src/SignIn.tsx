@@ -34,7 +34,7 @@ const SignIn: React.FC = () => {
                 const authRequest = new AuthorizationRequest({
                     client_id: environment.clientId,
                     redirect_uri: environment.redirectURL,
-                    scope: environment.scope,
+                    scope: 'openid profile',
                     response_type: AuthorizationRequest.RESPONSE_TYPE_CODE,
                     state: undefined,
                 });

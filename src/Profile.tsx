@@ -21,6 +21,10 @@ const useStyles = makeStyles((theme: Theme) =>
         root: {
             padding: theme.spacing(2),
         },
+        result: {
+            maxWidth: '90vw',
+            overflowWrap: 'break-word',
+        },
     }),
 );
 
@@ -29,6 +33,7 @@ const Profile: React.FC = () => {
 
     const [error, setError] = useState<string|null>(null);
     const [accessToken, setAccessToken] = useState<string|null>(null);
+    const [idToken, setIdToken] = useState<string|undefined>();
     const [refreshToken, setRefreshToken] = useState<string|undefined>();
 
     useEffect(() => {
@@ -75,6 +80,7 @@ const Profile: React.FC = () => {
                     })
                     .then((oResponse) => {
                         setAccessToken(oResponse.accessToken);
+                        setIdToken(oResponse.idToken);
                         setRefreshToken(oResponse.refreshToken);
                         const state = window.history.state;
                         window.history.replaceState(state, "", "/");
@@ -91,10 +97,11 @@ const Profile: React.FC = () => {
     return <Paper className={classes.root} variant="outlined">
         {error
             ? <p>ERROR: {error}</p>
-            : <dl>
+            : <dl className={classes.result}>
                 <dt>username:</dt><dd>TODO</dd>
-                <dt>accessToken:</dt><dd>{accessToken}</dd>
-                <dt>refreshToken:</dt><dd>{refreshToken}</dd>
+                <dt>accessToken:</dt><dd>{accessToken ? accessToken : "(none)"}</dd>
+                <dt>idToken:</dt><dd>{idToken ? idToken : "(none)"}</dd>
+                <dt>refreshToken:</dt><dd>{refreshToken ? refreshToken : "(none)"}</dd>
             </dl>
         }
     </Paper>;
