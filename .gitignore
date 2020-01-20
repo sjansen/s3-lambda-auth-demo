@@ -1,9 +1,9 @@
 # Directories
-/.idea/
-/.vscode/
 /coverage/
 /build/
+.idea/
 .pnp/
+.vscode/
 node_modules/
 
 # Files
