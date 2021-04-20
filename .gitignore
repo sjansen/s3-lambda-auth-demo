@@ -1,19 +1,20 @@
 # Directories
-/coverage/
-/build/
-.idea/
-.pnp/
-.vscode/
+/.idea/
+/.vscode/
+/archive/
+.terraform/
 node_modules/
 
 # Files
 /TODO
+.env.local
 .DS_Store
-.pnp.js
+.terraform.lock.hcl
+terraform.tfvars
+terragrunt-local.json
 
 # Patterns
 .*.sw[op]
-.env.*
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+*-generated.tf
+*.tgz
+*.zip
