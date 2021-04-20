@@ -55,6 +55,14 @@ resource "aws_s3_bucket" "media" {
   }
 }
 
+resource "aws_s3_bucket_object" "favicon" {
+  bucket       = aws_s3_bucket.media.id
+  content_type = "image/x-icon"
+  key          = "favicon.ico"
+  etag         = filemd5("${path.module}/../../../site/favicon.ico")
+  source       = "${path.module}/../../../site/favicon.ico"
+}
+
 resource "aws_s3_bucket_object" "pages" {
   for_each = fileset("${path.module}/../../../site/", "**.html")
 

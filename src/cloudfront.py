@@ -1,3 +1,4 @@
+import os.path
 from urllib.parse import parse_qs, urlencode
 
 
@@ -9,10 +10,16 @@ def lambda_handler(event, context):
     sortedParams = sorted(params.items(), key=lambda x: x[0])
     request["querystring"] = urlencode(sortedParams)
 
+    uri = request["uri"]
+    if uri.endswith("/"):
+        request["uri"] += "index.html"
+    elif not os.path.splitext(uri)[1]:
+        request["uri"] += "/index.html"
+
     if request["uri"] != "/secret.html":
         return request
 
-    if params.get('authenticated') == 'true':
+    if params.get("authenticated") == "true":
         return request
 
     response = {
