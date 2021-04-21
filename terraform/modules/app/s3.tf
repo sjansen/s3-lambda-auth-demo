@@ -64,7 +64,7 @@ resource "aws_s3_bucket_object" "favicon" {
 }
 
 resource "aws_s3_bucket_object" "pages" {
-  for_each = fileset("${path.module}/../../../site/", "**.html")
+  for_each = fileset("${path.module}/../../../site/", "**/*.html")
 
   bucket       = aws_s3_bucket.media.id
   content_type = "text/html"
