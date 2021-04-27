@@ -1,10 +1,7 @@
 data "archive_file" "edge" {
   type        = "zip"
   output_path = "${path.module}/cloudfront.zip"
-  source {
-    filename = "cloudfront.py"
-    content  = file("${path.module}/../../../src/cloudfront.py")
-  }
+  source_dir  = "${path.module}/../../../dist/zip"
 }
 
 resource "aws_lambda_function" "edge" {

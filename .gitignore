@@ -2,10 +2,12 @@
 /.idea/
 /.vscode/
 /archive/
+/dist/
 .terraform/
 node_modules/
 
 # Files
+/build.toml
 /TODO
 .env.local
 .DS_Store

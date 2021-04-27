@@ -1,4 +1,5 @@
 import os.path
+import sys
 from urllib.parse import parse_qs, urlencode
 
 
@@ -30,6 +31,20 @@ def lambda_handler(event, context):
         request["uri"] += "index.html"
     elif not os.path.splitext(uri)[1]:
         request["uri"] += "/index.html"
+
+    if uri.startswith("/debug"):
+        try:
+            import authlib
+            result = 'PASS'
+        except:
+            result = 'FAIL'
+        return {
+            "status": "200",
+            "headers": {
+                "content-type": [{"key": "Content-Type", "value": "text/html"}],
+            },
+            "body": result
+        }
 
     if not uri.startswith("/secret"):
         return request
